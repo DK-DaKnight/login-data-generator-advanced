@@ -11,6 +11,6 @@ module com.daknight.logindatagenerator.logindatagenerator {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.daknight.logindatagenerator.logindatagenerator to javafx.fxml;
-    exports com.daknight.logindatagenerator.logindatagenerator;
+    opens com.daknight.logindatagenerator.ui to javafx.fxml;
+    exports com.daknight.logindatagenerator.ui;
 }
