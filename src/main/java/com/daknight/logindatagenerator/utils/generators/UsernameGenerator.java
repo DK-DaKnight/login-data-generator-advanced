@@ -13,7 +13,7 @@ public class UsernameGenerator {
         MAX_SMALL_CHARS = maxSmall;
     }
 
-    protected char[] generateBigChar() {
+    private char[] generateBigChar() {
         char[] generated = new char[MAX_BIG_CHARS];
 
         for (int i = 0; i < MAX_BIG_CHARS; i++) {
@@ -22,7 +22,7 @@ public class UsernameGenerator {
         return generated;
     }
 
-    protected char[] generateSmallChar() {
+    private char[] generateSmallChar() {
         char[] generated = new char[MAX_SMALL_CHARS];
 
         for (int i = 0; i < MAX_SMALL_CHARS; i++) {

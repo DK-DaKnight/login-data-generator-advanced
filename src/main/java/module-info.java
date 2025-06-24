@@ -13,4 +13,6 @@ module com.daknight.logindatagenerator.logindatagenerator {
 
     opens com.daknight.logindatagenerator.ui to javafx.fxml;
     exports com.daknight.logindatagenerator.ui;
+    exports com.daknight.logindatagenerator.ui.menu;
+    opens com.daknight.logindatagenerator.ui.menu to javafx.fxml;
 }
