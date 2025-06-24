@@ -10,10 +10,12 @@ import javafx.stage.Stage;
 public class SettingsWindow {
     private final UsernameSettings usernameSettings;
     private final PasswordSettings passwordSettings;
+    private final ThemeSettings themeSettings;
 
-    public SettingsWindow(UsernameSettings us, PasswordSettings ps) {
+    public SettingsWindow(UsernameSettings us, PasswordSettings ps, ThemeSettings ts) {
         usernameSettings = us;
         passwordSettings = ps;
+        themeSettings = ts;
     }
 
     public void show() {
@@ -22,7 +24,7 @@ public class SettingsWindow {
         preferencesStage.initModality(Modality.APPLICATION_MODAL);
 
         ListView<String> categoryList = new ListView<>();
-        categoryList.getItems().addAll("Username Settings", "Password Settings");
+        categoryList.getItems().addAll("User Interface", "Username Settings", "Password Settings");
         categoryList.setPrefWidth(150);
 
         VBox contentArea = new VBox(10);
@@ -31,6 +33,12 @@ public class SettingsWindow {
         Button saveButton = new Button("Save");
         saveButton.setPrefWidth(100);
         saveButton.setPrefHeight(25);
+
+        // USER INTERFACE
+        Label themeLabel = new Label("Theme");
+        ComboBox<String> themeBox = new ComboBox<>();
+        themeBox.setValue(themeSettings.getTheme());
+        themeBox.getItems().addAll("Dark", "Light");
 
         // USERNAME SETTINGS
         Label usernameMaxBigCharsLabel = new Label("Max Big Chars");
@@ -97,12 +105,15 @@ public class SettingsWindow {
                         usernameMaxSmallCharsLabel, usernameMaxSmallCharsSpinner
                 );
             } else if ("Password Settings".equals(newVal)) {
-                Label info = new Label("Password settings UI not implemented.");
                 contentArea.getChildren().addAll(
                         passwordMaxBigCharsLabel, passwordMaxBigCharsSpinner,
                         passwordMaxSmallCharsLabel, passwordMaxSmallCharsSpinner,
                         passwordMaxSpecialCharsLabel, passwordMaxSpecialCharsSpinner,
                         passwordMaxNumbersLabel, passwordMaxNumbersSpinner
+                );
+            } else if ("User Interface".equals(newVal)) {
+                contentArea.getChildren().addAll(
+                        themeLabel, themeBox
                 );
             }
         });
@@ -112,6 +123,7 @@ public class SettingsWindow {
         saveButton.setOnAction(e -> {
             usernameSettings.setUsernameMaxBigChars(usernameMaxBigCharsSpinner.getValue());
             usernameSettings.setUsernameMaxSmallChars(usernameMaxSmallCharsSpinner.getValue());
+            themeSettings.setTheme(themeBox.getValue());
             preferencesStage.close();
         });
 

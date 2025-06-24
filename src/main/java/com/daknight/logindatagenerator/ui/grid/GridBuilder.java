@@ -19,9 +19,10 @@ public class GridBuilder {
         GridPane grid = new GridPane();
 
         Label username = new Label("Username");
-        username.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+        username.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
         Label password = new Label("Password");
-        password.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+        password.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+
 
         TextField generatedUsername = new TextField("Click 'Generate' to generate a username");
         generatedUsername.setEditable(false);
