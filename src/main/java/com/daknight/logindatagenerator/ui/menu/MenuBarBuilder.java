@@ -24,7 +24,7 @@ public class MenuBarBuilder {
                 Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY
         )));
 
-        // All menu
+        // All menus
         Menu homeMenu = new Menu("Home");
         menuBar.getStylesheets().add("data:text/css," +
                 ".menu-bar .label { -fx-text-fill: white; -fx-font-weight: bold; }" +
@@ -33,7 +33,7 @@ public class MenuBarBuilder {
                 ".menu-item .label { -fx-text-fill: white; }"
         );
 
-        // homeMenu items
+        // home menu items
         MenuItem settingItem = new MenuItem("Settings");
         settingItem.setOnAction(e -> {
             SettingsWindow settingsWindow = new SettingsWindow(

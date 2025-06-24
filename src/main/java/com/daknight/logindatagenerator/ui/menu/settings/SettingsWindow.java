@@ -4,10 +4,16 @@ import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
 import com.daknight.logindatagenerator.ui.menu.settings.config.PasswordSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
+import com.daknight.logindatagenerator.utils.lib.style.ButtonStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.ListViewStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.SpinnerStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElements;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -23,26 +29,59 @@ public class SettingsWindow {
     }
 
     public void show() {
-        Stage preferencesStage = new Stage();
-        preferencesStage.setTitle("Preferences");
-        preferencesStage.initModality(Modality.APPLICATION_MODAL);
+        Stage settingStage = new Stage();
+        settingStage.setTitle("Preferences");
+        settingStage.initModality(Modality.APPLICATION_MODAL);
 
         ListView<String> categoryList = new ListView<>();
         categoryList.getItems().addAll("User Interface", "Username Settings", "Password Settings");
-        categoryList.setPrefWidth(150);
+        categoryList.setPrefWidth(200);
+        categoryList.setStyle(ListViewStyle.listViewStyle());
+        categoryList.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    setBackground(null);
+                    setTextFill(Color.BLACK);
+                } else {
+                    setText(item);
+                    setTextFill(Color.WHITE);
+                    setBackground(new Background(new BackgroundFill(
+                            Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
+                    )));
+
+                    setOnMouseEntered(e -> {
+                        setBackground(new Background(new BackgroundFill(
+                                Color.web("#333333"), CornerRadii.EMPTY, Insets.EMPTY
+                        )));
+                        setTextFill(Color.LIGHTGRAY);
+                    });
+
+                    setOnMouseExited(e -> {
+                        setBackground(new Background(new BackgroundFill(
+                                Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
+                        )));
+                        setTextFill(Color.WHITE);
+                    });
+                }
+            }
+        });
 
         VBox contentArea = new VBox(10);
         contentArea.setPadding(new Insets(20));
-
-        Button saveButton = new Button("Save");
-        saveButton.setPrefWidth(100);
-        saveButton.setPrefHeight(25);
 
         // USER INTERFACE
         Label themeLabel = new Label("Theme");
         ComboBox<String> themeBox = new ComboBox<>();
         themeBox.setValue(themeSettings.getTheme());
         themeBox.getItems().addAll("Dark", "Light");
+        themeBox.setPrefWidth(800);
+        themeBox.setPrefHeight(30);
+        themeLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        TextElements.comboBoxStyle(themeBox);
 
         // USERNAME SETTINGS
         Label usernameMaxBigCharsLabel = new Label("Max Big Chars");
@@ -53,6 +92,8 @@ public class SettingsWindow {
         usernameMaxBigCharsSpinner.setEditable(true);
         usernameMaxBigCharsSpinner.setPrefWidth(800);
         usernameMaxBigCharsSpinner.setPrefHeight(30);
+        usernameMaxBigCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(usernameMaxBigCharsSpinner);
 
         Label usernameMaxSmallCharsLabel = new Label("Max Small Chars");
         Spinner<Integer> usernameMaxSmallCharsSpinner = new Spinner<>();
@@ -62,6 +103,8 @@ public class SettingsWindow {
         usernameMaxSmallCharsSpinner.setEditable(true);
         usernameMaxSmallCharsSpinner.setPrefWidth(800);
         usernameMaxSmallCharsSpinner.setPrefHeight(30);
+        usernameMaxSmallCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(usernameMaxSmallCharsSpinner);
 
         // PASSWORD SETTINGS
         Label passwordMaxBigCharsLabel = new Label("Max Big Chars");
@@ -72,8 +115,10 @@ public class SettingsWindow {
         passwordMaxBigCharsSpinner.setEditable(true);
         passwordMaxBigCharsSpinner.setPrefWidth(800);
         passwordMaxBigCharsSpinner.setPrefHeight(30);
+        passwordMaxBigCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(passwordMaxBigCharsSpinner);
 
-        Label passwordMaxSmallCharsLabel = new Label("Max Big Chars");
+        Label passwordMaxSmallCharsLabel = new Label("Max Small Chars");
         Spinner<Integer> passwordMaxSmallCharsSpinner = new Spinner<>();
         passwordMaxSmallCharsSpinner.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, passwordSettings.getPasswordMaxSmallChars())
@@ -81,8 +126,10 @@ public class SettingsWindow {
         passwordMaxSmallCharsSpinner.setEditable(true);
         passwordMaxSmallCharsSpinner.setPrefWidth(800);
         passwordMaxSmallCharsSpinner.setPrefHeight(30);
+        passwordMaxSmallCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(passwordMaxSmallCharsSpinner);
 
-        Label passwordMaxSpecialCharsLabel = new Label("Max Big Chars");
+        Label passwordMaxSpecialCharsLabel = new Label("Max Special Chars");
         Spinner<Integer> passwordMaxSpecialCharsSpinner = new Spinner<>();
         passwordMaxSpecialCharsSpinner.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, passwordSettings.getPasswordMaxSpecialChars())
@@ -90,8 +137,10 @@ public class SettingsWindow {
         passwordMaxSpecialCharsSpinner.setEditable(true);
         passwordMaxSpecialCharsSpinner.setPrefWidth(800);
         passwordMaxSpecialCharsSpinner.setPrefHeight(30);
+        passwordMaxSpecialCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(passwordMaxSpecialCharsSpinner);
 
-        Label passwordMaxNumbersLabel = new Label("Max Big Chars");
+        Label passwordMaxNumbersLabel = new Label("Max Numbers");
         Spinner<Integer> passwordMaxNumbersSpinner = new Spinner<>();
         passwordMaxNumbersSpinner.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, passwordSettings.getPasswordMaxNumbers())
@@ -99,6 +148,8 @@ public class SettingsWindow {
         passwordMaxNumbersSpinner.setEditable(true);
         passwordMaxNumbersSpinner.setPrefWidth(800);
         passwordMaxNumbersSpinner.setPrefHeight(30);
+        passwordMaxNumbersLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        SpinnerStyle.spinnerStyle(passwordMaxNumbersSpinner);
 
         categoryList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             contentArea.getChildren().clear();
@@ -123,8 +174,14 @@ public class SettingsWindow {
         });
 
         categoryList.getSelectionModel().selectFirst();
-
+        Button saveButton = new Button("Save");
+        saveButton.setCursor(Cursor.HAND);
+        saveButton.setPrefWidth(100);
+        saveButton.setPrefHeight(25);
+        saveButton.setStyle(ButtonStyle.buttonStyle());
+        ButtonStyle.buttonHoverStyle(saveButton);
         saveButton.setOnAction(e -> {
+            ButtonStyle.buttonClickFeedback(saveButton, "Saved");
             // USERNAME CONFIG
             Config.username_maxBigChars = usernameMaxBigCharsSpinner.getValue();
             Config.username_maxSmallChars = usernameMaxSmallCharsSpinner.getValue();
@@ -136,7 +193,8 @@ public class SettingsWindow {
             // USER INTERFACE CONFIG
             Config.userInterface_theme = themeBox.getValue();
 
-            preferencesStage.close();
+            settingStage.close();
+
             System.out.println();
             System.out.println("--- Debug - username and password max variables ---");
             System.out.println("Username");
@@ -153,6 +211,9 @@ public class SettingsWindow {
         });
 
         BorderPane mainLayout = new BorderPane();
+        mainLayout.setBackground(new Background(new BackgroundFill(
+                Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY
+        )));
         mainLayout.setLeft(categoryList);
         mainLayout.setCenter(contentArea);
         mainLayout.setBottom(new HBox(saveButton));
@@ -164,7 +225,7 @@ public class SettingsWindow {
         bottomBox.setStyle("-fx-alignment: center-right;");
 
         Scene scene = new Scene(mainLayout, 800, 400);
-        preferencesStage.setScene(scene);
-        preferencesStage.showAndWait();
+        settingStage.setScene(scene);
+        settingStage.showAndWait();
     }
 }

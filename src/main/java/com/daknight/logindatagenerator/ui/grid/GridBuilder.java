@@ -6,6 +6,8 @@ import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
 import com.daknight.logindatagenerator.utils.generators.PasswordGenerator;
 import com.daknight.logindatagenerator.utils.generators.UsernameGenerator;
+import com.daknight.logindatagenerator.utils.lib.style.ButtonStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElements;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -35,16 +37,20 @@ public class GridBuilder {
         generatedUsername.setEditable(false);
         generatedUsername.setStyle("-fx-font-size: 14px;");
         generatedUsername.setPrefWidth(300);
+        TextElements.textFieldStyle(generatedUsername);
 
         TextField generatedPassword = new TextField("Click 'Generate' to generate a password");
         generatedPassword.setEditable(false);
         generatedPassword.setStyle("-fx-font-size: 14px;");
         generatedPassword.setPrefWidth(300);
+        TextElements.textFieldStyle(generatedPassword);
 
         Button copyUsername = new Button("Copy");
         copyUsername.setCursor(Cursor.HAND);
-        copyUsername.setStyle(buttonStyle());
+        copyUsername.setStyle(ButtonStyle.buttonStyle());
+        ButtonStyle.buttonHoverStyle(copyUsername);
         copyUsername.setOnAction(e -> {
+            ButtonStyle.buttonClickFeedback(copyUsername, "Copied");
             ClipboardContent content = new ClipboardContent();
             content.putString(generatedUsername.getText());
             Clipboard.getSystemClipboard().setContent(content);
@@ -52,17 +58,30 @@ public class GridBuilder {
 
         Button copyPassword = new Button("Copy");
         copyPassword.setCursor(Cursor.HAND);
-        copyPassword.setStyle(buttonStyle());
+        copyPassword.setStyle(ButtonStyle.buttonStyle());
+        ButtonStyle.buttonHoverStyle(copyPassword);
         copyPassword.setOnAction(e -> {
+            ButtonStyle.buttonClickFeedback(copyPassword, "Copied");
             ClipboardContent content = new ClipboardContent();
             content.putString(generatedPassword.getText());
             Clipboard.getSystemClipboard().setContent(content);
         });
 
+        Button generateButton = new Button("Generate");
+        generateButton.setCursor(Cursor.HAND);
+        generateButton.setStyle(ButtonStyle.buttonStyle());
+        ButtonStyle.buttonHoverStyle(generateButton);
+        generateButton.setOnAction(e -> {
+            ButtonStyle.buttonClickFeedback(generateButton, "Generated");
+            generatedUsername.setText(new UsernameGenerator(5, 5).generateUsername());
+            generatedPassword.setText(new PasswordGenerator(5, 5, 5, 5).generatePassword());
+        });
+
         Button testButton = new Button("Getter");
         testButton.setCursor(Cursor.HAND);
-        testButton.setStyle(buttonStyle());
+        testButton.setStyle(ButtonStyle.buttonStyle());
         testButton.setOnAction(e -> {
+            ButtonStyle.buttonHoverStyle(testButton);
             System.out.println();
             System.out.println("--- Debug - username and password max variables ---");
             System.out.println("Username");
@@ -84,14 +103,6 @@ public class GridBuilder {
         HBox passwordBox = new HBox(10, generatedPassword, copyPassword);
         passwordBox.setAlignment(Pos.CENTER_LEFT);
 
-        Button generateButton = new Button("Generate");
-        generateButton.setCursor(Cursor.HAND);
-        generateButton.setStyle(buttonStyle());
-        generateButton.setOnAction(e -> {
-            generatedUsername.setText(new UsernameGenerator(5, 5).generateUsername());
-            generatedPassword.setText(new PasswordGenerator(5, 5, 5, 5).generatePassword());
-        });
-
         grid.setHgap(10);
         grid.setVgap(15);
         grid.setPadding(new Insets(20));
@@ -101,19 +112,9 @@ public class GridBuilder {
         grid.add(password, 0, 1);
         grid.add(passwordBox, 1, 1);
         grid.add(generateButton, 1, 2);
-        // grid.add(testButton, 2, 2);
+        grid.add(testButton, 2, 2);
         grid.setAlignment(Pos.CENTER);
 
         return grid;
-    }
-    private static String buttonStyle() {
-        return """
-                -fx-background-color: #4CAF50;
-                -fx-text-fill: white;
-                -fx-font-size: 14px;
-                -fx-font-weight: bold;
-                -fx-background-radius: 6;
-                -fx-padding: 6 12;
-                """;
     }
 }
