@@ -6,8 +6,8 @@ import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
 import com.daknight.logindatagenerator.utils.generators.PasswordGenerator;
 import com.daknight.logindatagenerator.utils.generators.UsernameGenerator;
-import com.daknight.logindatagenerator.utils.lib.style.ButtonStyle;
-import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElements;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.ButtonStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElementsStyle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -37,13 +37,13 @@ public class GridBuilder {
         generatedUsername.setEditable(false);
         generatedUsername.setStyle("-fx-font-size: 14px;");
         generatedUsername.setPrefWidth(300);
-        TextElements.textFieldStyle(generatedUsername);
+        TextElementsStyle.textFieldStyle(generatedUsername);
 
         TextField generatedPassword = new TextField("Click 'Generate' to generate a password");
         generatedPassword.setEditable(false);
         generatedPassword.setStyle("-fx-font-size: 14px;");
         generatedPassword.setPrefWidth(300);
-        TextElements.textFieldStyle(generatedPassword);
+        TextElementsStyle.textFieldStyle(generatedPassword);
 
         Button copyUsername = new Button("Copy");
         copyUsername.setCursor(Cursor.HAND);

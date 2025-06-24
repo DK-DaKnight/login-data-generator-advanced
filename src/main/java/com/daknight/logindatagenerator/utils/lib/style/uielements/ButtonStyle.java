@@ -1,4 +1,4 @@
-package com.daknight.logindatagenerator.utils.lib.style;
+package com.daknight.logindatagenerator.utils.lib.style.uielements;
 
 import javafx.animation.PauseTransition;
 import javafx.scene.control.Button;

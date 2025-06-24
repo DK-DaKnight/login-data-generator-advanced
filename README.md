@@ -68,55 +68,54 @@ java -jar target/LoginDataGenerator.jar
 ## 📂 Project Structure
 
 ```
-login-data-generator-advanced/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── daknight/
-│   │   │           └── logindatagenerator/
-│   │   │               ├── ui/
-│   │   │               │   ├── grid/
-│   │   │               │   │   └── GridBuilder.java
-│   │   │               │   ├── menu/
-│   │   │               │   │   ├── settings/
-│   │   │               │   │   │   ├── config/
-│   │   │               │   │   │   │   ├── Config.java
-│   │   │               │   │   │   │   ├── PasswordSettings.java
-│   │   │               │   │   │   │   ├── ThemeSettings.java
-│   │   │               │   │   │   │   └── UsernameSettings.java
-│   │   │               │   │   │   └── SettingsWindow.java
-│   │   │               │   │   └── MenuBarBuilder.java
-│   │   │               │   └── LoginDataGeneratorUI.java
-│   │   │               ├── utils/
-│   │   │               │   ├── generators/
-│   │   │               │   │   ├── PasswordGenerator.java
-│   │   │               │   │   └── UsernameGenerator.java
-│   │   │               │   └── lib/
-│   │   │               │       └── arrays/
-│   │   │               │           ├── Characters.java
-│   │   │               │           └── Numbers.java
-│   │   │               └── AppLauncher.java
-│   │   └── module-info.java
-│   └── resources/
-│       └── com/
-│           └── daknight/
-│               └── logindatagenerator/
-│                   └── logindatagenerator/
-│                       └── hello-view.fxml
-└── test/
-    └── java/
-        └── com/
-            └── daknight/
-                └── logindatagenerator/
-                        └── util/
-                            ├── generators/
-                            │   ├── PasswordGeneratorTest.java
-                            │   └── UsernameGeneratorTest.java
-                            └── lib/
-                                └── arrays/
-                                    ├── CharactersTest.java
-                                    └── NumbersTest.java
+└── login-data-generator-advanced/
+    └── src/
+        ├── main/
+        │   ├── java/
+        │   │   ├── com/daknight/logindatagenerator/
+        │   │   │   ├── ui/
+        │   │   │   │   ├── grid/
+        │   │   │   │   │   └── GridBuilder.java
+        │   │   │   │   ├── menu/
+        │   │   │   │   │   ├── settings/
+        │   │   │   │   │   │   ├── config/
+        │   │   │   │   │   │   │   ├── Config.java
+        │   │   │   │   │   │   │   ├── PasswordSettings.java
+        │   │   │   │   │   │   │   ├── ThemeSettings.java
+        │   │   │   │   │   │   │   └── UsernameSettings.java
+        │   │   │   │   │   │   └── SettingsWindow.java
+        │   │   │   │   │   └── MenuBarBuilder.java
+        │   │   │   │   └── LoginDataGeneratorUI.java
+        │   │   │   ├── utils/
+        │   │   │   │   ├── generators/
+        │   │   │   │   │   ├── PasswordGenerator.java
+        │   │   │   │   │   └── UsernameGenerator.java
+        │   │   │   │   └── lib/
+        │   │   │   │       ├── arrays/
+        │   │   │   │       │   ├── Characters.java
+        │   │   │   │       │   └── Numbers.java
+        │   │   │   │       └── style/
+        │   │   │   │           └── uielements/
+        │   │   │   │               ├── ButtonStyle.java
+        │   │   │   │               ├── ListViewStyle.java
+        │   │   │   │               ├── SpinnerStyle.java
+        │   │   │   │               └── TextElementsStyle.java
+        │   │   │   └── AppLauncher.java
+        │   │   └── module-info.java
+        │   └── resources/
+        │       └── com/daknight/logindatagenerator/logindatagenerator/
+        │           └── hello-view.fxml
+        └── test/
+            └── java/
+                └── com/daknight/logindatagenerator/
+                    └── util/
+                        ├── generators/
+                        │   ├── PasswordGeneratorTest.java
+                        │   └── UsernameGeneratorTest.java
+                        └── lib/
+                            └── arrays/
+                                ├── CharactersTest.java
+                                └── NumbersTest.java
 ```
 
 ## 📄 License

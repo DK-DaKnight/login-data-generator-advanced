@@ -3,7 +3,7 @@ package com.daknight.logindatagenerator.utils.lib.style.uielements;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public interface TextElements {
+public interface TextElementsStyle {
     static void comboBoxStyle(ComboBox<?> comboBox) {
         comboBox.setPrefHeight(30);
         comboBox.setStyle("""

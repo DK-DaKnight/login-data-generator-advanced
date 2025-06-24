@@ -4,10 +4,10 @@ import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
 import com.daknight.logindatagenerator.ui.menu.settings.config.PasswordSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
-import com.daknight.logindatagenerator.utils.lib.style.ButtonStyle;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.ButtonStyle;
 import com.daknight.logindatagenerator.utils.lib.style.uielements.ListViewStyle;
 import com.daknight.logindatagenerator.utils.lib.style.uielements.SpinnerStyle;
-import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElements;
+import com.daknight.logindatagenerator.utils.lib.style.uielements.TextElementsStyle;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -81,7 +81,7 @@ public class SettingsWindow {
         themeBox.setPrefWidth(800);
         themeBox.setPrefHeight(30);
         themeLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
-        TextElements.comboBoxStyle(themeBox);
+        TextElementsStyle.comboBoxStyle(themeBox);
 
         // USERNAME SETTINGS
         Label usernameMaxBigCharsLabel = new Label("Max Big Chars");
