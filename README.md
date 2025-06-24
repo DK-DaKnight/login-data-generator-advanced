@@ -62,7 +62,7 @@ git clone https://github.com/DK-DaKnight/login-data-generator-advanced.git
 cd login-data-generator-advanced
 mvn clean install
 java -jar target/LoginDataGenerator.jar
-
+```
 ---
 
 ## 📂 Project Structure
