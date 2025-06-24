@@ -1,5 +1,9 @@
 package com.daknight.logindatagenerator.ui.menu.settings;
 
+import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
+import com.daknight.logindatagenerator.ui.menu.settings.config.PasswordSettings;
+import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
+import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -121,10 +125,31 @@ public class SettingsWindow {
         categoryList.getSelectionModel().selectFirst();
 
         saveButton.setOnAction(e -> {
-            usernameSettings.setUsernameMaxBigChars(usernameMaxBigCharsSpinner.getValue());
-            usernameSettings.setUsernameMaxSmallChars(usernameMaxSmallCharsSpinner.getValue());
-            themeSettings.setTheme(themeBox.getValue());
+            // USERNAME CONFIG
+            Config.username_maxBigChars = usernameMaxBigCharsSpinner.getValue();
+            Config.username_maxSmallChars = usernameMaxSmallCharsSpinner.getValue();
+            // PASSWORD CONFIG
+            Config.password_maxBigChars = passwordMaxBigCharsSpinner.getValue();
+            Config.password_maxSmallChars = passwordMaxSmallCharsSpinner.getValue();
+            Config.password_maxSpecialChars = passwordMaxSpecialCharsSpinner.getValue();
+            Config.password_maxNumbers = passwordMaxNumbersSpinner.getValue();
+            // USER INTERFACE CONFIG
+            Config.userInterface_theme = themeBox.getValue();
+
             preferencesStage.close();
+            System.out.println();
+            System.out.println("--- Debug - username and password max variables ---");
+            System.out.println("Username");
+            System.out.println("Username max big chars: " + usernameSettings.getUsernameMaxBigChars());
+            System.out.println("Username max small chars: " +  usernameSettings.getUsernameMaxSmallChars());
+            System.out.println("Password");
+            System.out.println("Password max big chars: " +  passwordSettings.getPasswordMaxBigChars());
+            System.out.println("Password max small chars: " + passwordSettings.getPasswordMaxSmallChars());
+            System.out.println("Password max special chars: " +  passwordSettings.getPasswordMaxSpecialChars());
+            System.out.println("Password max numbers: " +  passwordSettings.getPasswordMaxNumbers());
+            System.out.println("User Interface");
+            System.out.println("User Interface theme: " + themeSettings.getTheme());
+            System.out.println();
         });
 
         BorderPane mainLayout = new BorderPane();

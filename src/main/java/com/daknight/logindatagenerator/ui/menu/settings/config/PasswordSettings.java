@@ -1,4 +1,4 @@
-package com.daknight.logindatagenerator.ui.menu.settings;
+package com.daknight.logindatagenerator.ui.menu.settings.config;
 
 public class PasswordSettings {
     private int passwordMaxBigChars;
