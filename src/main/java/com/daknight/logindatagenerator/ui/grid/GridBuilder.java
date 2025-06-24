@@ -112,7 +112,7 @@ public class GridBuilder {
         grid.add(password, 0, 1);
         grid.add(passwordBox, 1, 1);
         grid.add(generateButton, 1, 2);
-        grid.add(testButton, 2, 2);
+        //grid.add(testButton, 2, 2);
         grid.setAlignment(Pos.CENTER);
 
         return grid;

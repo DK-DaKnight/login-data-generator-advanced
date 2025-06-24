@@ -40,8 +40,9 @@ The UI consists of the following elements:
 * Text fields to display the generated values
 * "Copy" buttons to copy the generated data to the clipboard
 
-Example layout (structure may vary):  
-![Login-Data-Generator_UI](/images/screenshots/app.png)
+App layout:  
+![Login-Data-Generator-UI](/images/screenshots/app.png)
+![Login-Data-Generator-Settings](/images/screenshots/settings.png)
 
 ---
 

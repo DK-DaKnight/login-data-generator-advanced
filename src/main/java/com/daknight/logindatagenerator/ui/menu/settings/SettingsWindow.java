@@ -30,7 +30,7 @@ public class SettingsWindow {
 
     public void show() {
         Stage settingStage = new Stage();
-        settingStage.setTitle("Preferences");
+        settingStage.setTitle("Settings");
         settingStage.initModality(Modality.APPLICATION_MODAL);
 
         ListView<String> categoryList = new ListView<>();
