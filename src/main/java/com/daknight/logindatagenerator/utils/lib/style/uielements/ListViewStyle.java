@@ -7,7 +7,7 @@ public interface ListViewStyle {
             -fx-text-fill: white;
             -fx-font-size: 14px;
             -fx-font-weight: bold;
-            -fx-background-color::selected: white;
-            """;
+        """;
     }
+
 }

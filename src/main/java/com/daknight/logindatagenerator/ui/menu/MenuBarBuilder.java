@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 
 public class MenuBarBuilder {
     public static MenuBar build(Runnable onExit) {
+        ThemeSettings themeSettings = new ThemeSettings(Config.userInterface_theme);
         MenuBar menuBar = new MenuBar();
         menuBar.setBackground(new Background(new BackgroundFill(
                 Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY
@@ -26,12 +27,7 @@ public class MenuBarBuilder {
 
         // All menus
         Menu homeMenu = new Menu("Home");
-        menuBar.getStylesheets().add("data:text/css," +
-                ".menu-bar .label { -fx-text-fill: white; -fx-font-weight: bold; }" +
-                ".menu-bar { -fx-background-color: #1a1a1a; }" +
-                ".context-menu { -fx-background-color: #1a1a1a; }" +
-                ".menu-item .label { -fx-text-fill: white; }"
-        );
+        menuBar.getStylesheets().add(themeSettings.changeMenu());
 
         // home menu items
         MenuItem settingItem = new MenuItem("Settings");

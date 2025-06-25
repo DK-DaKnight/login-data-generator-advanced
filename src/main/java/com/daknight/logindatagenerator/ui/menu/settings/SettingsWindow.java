@@ -17,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class SettingsWindow {
     private final UsernameSettings usernameSettings;
     private final PasswordSettings passwordSettings;
@@ -37,7 +39,26 @@ public class SettingsWindow {
         categoryList.getItems().addAll("User Interface", "Username Settings", "Password Settings");
         categoryList.setPrefWidth(200);
         categoryList.setStyle(ListViewStyle.listViewStyle());
-        categoryList.setCellFactory(lv -> new ListCell<>() {
+        categoryList.setCellFactory(lv -> new ListCell<>() {{
+            setOnMouseEntered(e -> {
+                    if (!isEmpty()) {
+                        setBackground(new Background(new BackgroundFill(
+                                Color.web("#333333"), CornerRadii.EMPTY, Insets.EMPTY
+                        )));
+                        setTextFill(Color.LIGHTGRAY);
+                    }
+                });
+
+                setOnMouseExited(e -> {
+                    if (!isEmpty()) {
+                        setBackground(new Background(new BackgroundFill(
+                                Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
+                        )));
+                        setTextFill(Color.WHITE);
+                    }
+                });
+            }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -48,27 +69,23 @@ public class SettingsWindow {
                     setTextFill(Color.BLACK);
                 } else {
                     setText(item);
-                    setTextFill(Color.WHITE);
-                    setBackground(new Background(new BackgroundFill(
-                            Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
-                    )));
 
-                    setOnMouseEntered(e -> {
+                    // Auswahlfarbe setzen
+                    if (isSelected()) {
                         setBackground(new Background(new BackgroundFill(
-                                Color.web("#333333"), CornerRadii.EMPTY, Insets.EMPTY
+                                Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY
                         )));
-                        setTextFill(Color.LIGHTGRAY);
-                    });
-
-                    setOnMouseExited(e -> {
+                        setTextFill(Color.BLACK);
+                    } else {
                         setBackground(new Background(new BackgroundFill(
                                 Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
                         )));
                         setTextFill(Color.WHITE);
-                    });
+                    }
                 }
             }
         });
+
 
         VBox contentArea = new VBox(10);
         contentArea.setPadding(new Insets(20));
