@@ -73,8 +73,8 @@ public class GridBuilder {
         ButtonStyle.buttonHoverStyle(generateButton);
         generateButton.setOnAction(e -> {
             ButtonStyle.buttonClickFeedback(generateButton, "Generated");
-            generatedUsername.setText(new UsernameGenerator(5, 5).generateUsername());
-            generatedPassword.setText(new PasswordGenerator(5, 5, 5, 5).generatePassword());
+            generatedUsername.setText(new UsernameGenerator(Config.username_maxBigChars, Config.username_maxSmallChars).generateUsername());
+            generatedPassword.setText(new PasswordGenerator(Config.password_maxBigChars, Config.password_maxSmallChars, Config.password_maxSpecialChars, Config.password_maxNumbers).generatePassword());
         });
 
         Button testButton = new Button("Getter");

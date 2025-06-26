@@ -1,10 +1,12 @@
 package com.daknight.logindatagenerator.ui.menu;
 
+import com.daknight.logindatagenerator.ui.LoginDataGeneratorUI;
 import com.daknight.logindatagenerator.ui.menu.settings.*;
 import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
 import com.daknight.logindatagenerator.ui.menu.settings.config.PasswordSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
+import com.daknight.logindatagenerator.utils.ui.menu.AppRestart;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -34,6 +36,7 @@ public class MenuBarBuilder {
 
         MenuItem restartItem = new MenuItem("Restart");
         restartItem.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCodeCombination.ALT_DOWN));
+        restartItem.setOnAction(e -> AppRestart.restart(LoginDataGeneratorUI.getPrimaryStage()));
         MenuItem exitItem = new MenuItem("Exit");
         exitItem.setOnAction(e -> onExit.run());
         exitItem.setAccelerator(new KeyCodeCombination(KeyCode.DELETE, KeyCodeCombination.ALT_DOWN));

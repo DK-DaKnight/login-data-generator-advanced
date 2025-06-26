@@ -14,21 +14,29 @@ import javafx.scene.layout.CornerRadii;
 import javafx.stage.Stage;
 
 public class LoginDataGeneratorUI extends Application {
+    private static Stage primaryStage;
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
+        primaryStage = stage;
+
         BorderPane root = new BorderPane();
         ThemeSettings themeSettings = new ThemeSettings(Config.userInterface_theme);
         root.setBackground(new Background(new BackgroundFill(
                 themeSettings.changeBackground(), CornerRadii.EMPTY, Insets.EMPTY
         )));
 
-        root.setTop(MenuBarBuilder.build(primaryStage::close));
+        root.setTop(MenuBarBuilder.build(stage::close));
         root.setCenter(GridBuilder.build());
 
         Scene scene = new Scene(root, 800, 800);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Login Data Generator");
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.setTitle("Login Data Generator");
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
