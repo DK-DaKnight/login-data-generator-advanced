@@ -28,9 +28,9 @@ public class GridBuilder {
         ThemeSettings themeSettings = new ThemeSettings(Config.userInterface_theme);
 
         Label username = new Label("Username");
-        username.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        username.setStyle(themeSettings.changeLabel());
         Label password = new Label("Password");
-        password.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        password.setStyle(themeSettings.changeLabel());
 
 
         TextField generatedUsername = new TextField("Click 'Generate' to generate a username");

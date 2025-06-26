@@ -5,25 +5,17 @@ import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
 import com.daknight.logindatagenerator.ui.menu.settings.config.PasswordSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import com.daknight.logindatagenerator.ui.menu.settings.config.UsernameSettings;
-import javafx.geometry.Insets;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 
 public class MenuBarBuilder {
     public static MenuBar build(Runnable onExit) {
         ThemeSettings themeSettings = new ThemeSettings(Config.userInterface_theme);
         MenuBar menuBar = new MenuBar();
-        menuBar.setBackground(new Background(new BackgroundFill(
-                Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY
-        )));
 
         // All menus
         Menu homeMenu = new Menu("Home");

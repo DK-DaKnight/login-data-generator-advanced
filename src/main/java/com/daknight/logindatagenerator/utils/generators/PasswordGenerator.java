@@ -2,7 +2,6 @@ package com.daknight.logindatagenerator.utils.generators;
 
 import com.daknight.logindatagenerator.utils.lib.arrays.Characters;
 import com.daknight.logindatagenerator.utils.lib.arrays.Numbers;
-
 import java.security.SecureRandom;
 
 public class PasswordGenerator {

@@ -13,11 +13,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 public class SettingsWindow {
     private final UsernameSettings usernameSettings;
@@ -43,18 +40,18 @@ public class SettingsWindow {
             setOnMouseEntered(e -> {
                     if (!isEmpty()) {
                         setBackground(new Background(new BackgroundFill(
-                                Color.web("#333333"), CornerRadii.EMPTY, Insets.EMPTY
+                                themeSettings.listViewBackgroundEntered(), CornerRadii.EMPTY, Insets.EMPTY
                         )));
-                        setTextFill(Color.LIGHTGRAY);
+                        setTextFill(themeSettings.listViewTextFillEntered());
                     }
                 });
 
                 setOnMouseExited(e -> {
                     if (!isEmpty()) {
                         setBackground(new Background(new BackgroundFill(
-                                Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
+                                themeSettings.listViewBackgroundExited(), CornerRadii.EMPTY, Insets.EMPTY
                         )));
-                        setTextFill(Color.WHITE);
+                        setTextFill(themeSettings.listViewTextFillExited());
                     }
                 });
             }
@@ -66,21 +63,21 @@ public class SettingsWindow {
                 if (empty || item == null) {
                     setText(null);
                     setBackground(null);
-                    setTextFill(Color.BLACK);
+                    setTextFill(themeSettings.listViewUpdateItemTextFill());
                 } else {
                     setText(item);
 
                     // Auswahlfarbe setzen
                     if (isSelected()) {
                         setBackground(new Background(new BackgroundFill(
-                                Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY
+                                themeSettings.listViewIsSelectedBackground(), CornerRadii.EMPTY, Insets.EMPTY
                         )));
-                        setTextFill(Color.BLACK);
+                        setTextFill(themeSettings.listViewIsSelectedTextFill());
                     } else {
                         setBackground(new Background(new BackgroundFill(
-                                Color.web("#1a1a1a"), CornerRadii.EMPTY, Insets.EMPTY
+                                themeSettings.listViewIsNotSelectedBackground(), CornerRadii.EMPTY, Insets.EMPTY
                         )));
-                        setTextFill(Color.WHITE);
+                        setTextFill(themeSettings.listViewIsNotSelectedTextFill());
                     }
                 }
             }
@@ -97,7 +94,7 @@ public class SettingsWindow {
         themeBox.getItems().addAll("Dark", "Light");
         themeBox.setPrefWidth(800);
         themeBox.setPrefHeight(30);
-        themeLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        themeLabel.setStyle(themeSettings.changeLabel());
         TextElementsStyle.comboBoxStyle(themeBox);
 
         // USERNAME SETTINGS
@@ -109,7 +106,7 @@ public class SettingsWindow {
         usernameMaxBigCharsSpinner.setEditable(true);
         usernameMaxBigCharsSpinner.setPrefWidth(800);
         usernameMaxBigCharsSpinner.setPrefHeight(30);
-        usernameMaxBigCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        usernameMaxBigCharsLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(usernameMaxBigCharsSpinner);
 
         Label usernameMaxSmallCharsLabel = new Label("Max Small Chars");
@@ -120,7 +117,7 @@ public class SettingsWindow {
         usernameMaxSmallCharsSpinner.setEditable(true);
         usernameMaxSmallCharsSpinner.setPrefWidth(800);
         usernameMaxSmallCharsSpinner.setPrefHeight(30);
-        usernameMaxSmallCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        usernameMaxSmallCharsLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(usernameMaxSmallCharsSpinner);
 
         // PASSWORD SETTINGS
@@ -132,7 +129,7 @@ public class SettingsWindow {
         passwordMaxBigCharsSpinner.setEditable(true);
         passwordMaxBigCharsSpinner.setPrefWidth(800);
         passwordMaxBigCharsSpinner.setPrefHeight(30);
-        passwordMaxBigCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        passwordMaxBigCharsLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(passwordMaxBigCharsSpinner);
 
         Label passwordMaxSmallCharsLabel = new Label("Max Small Chars");
@@ -143,7 +140,7 @@ public class SettingsWindow {
         passwordMaxSmallCharsSpinner.setEditable(true);
         passwordMaxSmallCharsSpinner.setPrefWidth(800);
         passwordMaxSmallCharsSpinner.setPrefHeight(30);
-        passwordMaxSmallCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        passwordMaxSmallCharsLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(passwordMaxSmallCharsSpinner);
 
         Label passwordMaxSpecialCharsLabel = new Label("Max Special Chars");
@@ -154,7 +151,7 @@ public class SettingsWindow {
         passwordMaxSpecialCharsSpinner.setEditable(true);
         passwordMaxSpecialCharsSpinner.setPrefWidth(800);
         passwordMaxSpecialCharsSpinner.setPrefHeight(30);
-        passwordMaxSpecialCharsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        passwordMaxSpecialCharsLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(passwordMaxSpecialCharsSpinner);
 
         Label passwordMaxNumbersLabel = new Label("Max Numbers");
@@ -165,7 +162,7 @@ public class SettingsWindow {
         passwordMaxNumbersSpinner.setEditable(true);
         passwordMaxNumbersSpinner.setPrefWidth(800);
         passwordMaxNumbersSpinner.setPrefHeight(30);
-        passwordMaxNumbersLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white");
+        passwordMaxNumbersLabel.setStyle(themeSettings.changeLabel());
         SpinnerStyle.spinnerStyle(passwordMaxNumbersSpinner);
 
         categoryList.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
@@ -229,7 +226,7 @@ public class SettingsWindow {
 
         BorderPane mainLayout = new BorderPane();
         mainLayout.setBackground(new Background(new BackgroundFill(
-                Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY
+                themeSettings.changeBackground(), CornerRadii.EMPTY, Insets.EMPTY
         )));
         mainLayout.setLeft(categoryList);
         mainLayout.setCenter(contentArea);

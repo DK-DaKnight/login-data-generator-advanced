@@ -9,5 +9,5 @@ public class Config {
     public static int password_maxSpecialChars = 5;
     public static int password_maxNumbers = 5;
 
-    public static String userInterface_theme = "Light";
+    public static String userInterface_theme = "Dark";
 }

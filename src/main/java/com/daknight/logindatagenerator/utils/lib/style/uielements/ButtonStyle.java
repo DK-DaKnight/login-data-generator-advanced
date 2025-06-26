@@ -1,22 +1,39 @@
 package com.daknight.logindatagenerator.utils.lib.style.uielements;
 
+import com.daknight.logindatagenerator.ui.menu.settings.config.Config;
+import com.daknight.logindatagenerator.ui.menu.settings.config.ThemeSettings;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.Button;
 import javafx.animation.ScaleTransition;
 import javafx.util.Duration;
 
 public interface ButtonStyle {
+    ThemeSettings themeSettings = new ThemeSettings(Config.userInterface_theme);
     static String buttonStyle() {
-        return """
-        -fx-background-color: #2a2a2a;
-        -fx-border-color: #444;
-        -fx-border-radius: 6;
-        -fx-background-radius: 6;
-        -fx-text-fill: white;
-        -fx-font-size: 14px;
-        -fx-padding: 4 10 4 10;
-        -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0); /* placeholder to enable transition */
-        """;
+        if (themeSettings.getTheme().equals("Dark")) {
+            return """
+                -fx-background-color: #2a2a2a;
+                -fx-border-color: #444;
+                -fx-border-radius: 6;
+                -fx-background-radius: 6;
+                -fx-text-fill: white;
+                -fx-font-size: 14px;
+                -fx-padding: 4 10 4 10;
+                -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0);
+            """;
+        } else if (themeSettings.getTheme().equals("Light")) {
+            return """
+                -fx-background-color: white;
+                -fx-border-color: #444;
+                -fx-border-radius: 6;
+                -fx-background-radius: 6;
+                -fx-text-fill: black;
+                -fx-font-size: 14px;
+                -fx-padding: 4 10 4 10;
+                -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0);
+            """;
+        }
+        return null;
     }
 
     static void buttonHoverStyle(Button button) {
